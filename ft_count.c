@@ -6,7 +6,7 @@
 /*   By: muteza <muteza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 16:49:15 by muteza            #+#    #+#             */
-/*   Updated: 2021/11/09 16:53:10 by muteza           ###   ########.fr       */
+/*   Updated: 2021/11/09 17:17:43 by muteza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,19 @@
 int	ft_count(char *str)
 {
 	int	i;
+	int	compteur;
 
+	compteur = 0;
 	i = 0;
 	while (str[i])
 	{
-		if (str);
+		if (str[i] == '%')
+		{
+			compteur++;
+			i++;
+		}
+		i++;
 	}
-	gcc ft_printf.c ft_checkflags.c ft_strlen.c ft_putchar.c ft_argputchar.c ft_argputstr.c ft_putstr.c  ft_argputnbr.c ft_argputnbr_base.c ft_count.c 
+	return (0);
+	//printf("%d", compteur);
 }

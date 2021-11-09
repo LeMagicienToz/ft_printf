@@ -6,7 +6,7 @@
 /*   By: muteza <muteza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 18:18:33 by muteza            #+#    #+#             */
-/*   Updated: 2021/11/09 16:26:21 by muteza           ###   ########.fr       */
+/*   Updated: 2021/11/09 17:17:24 by muteza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_checkflags(char **tab_arg, va_list args, int count)
 
 	n = 0;
 	if (*(tab_arg[0] + count) == 'c')
-		ft_argputchar(args, count);
+		ft_argputchar(args);
 	if (*(tab_arg[0] + count) == 's')
 		ft_argputstr(args);
 	//if (*(tab_arg[0] + count) == 'p')
@@ -38,6 +38,7 @@ int	ft_checkflags(char **tab_arg, va_list args, int count)
 		n = va_arg(args, unsigned int);
 		ft_argputnbr_base(n, args);
 	}
+	return (0);
 }
 
 int	ft_check_space(char *str, int k)

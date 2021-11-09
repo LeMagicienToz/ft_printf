@@ -6,7 +6,7 @@
 /*   By: muteza <muteza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 17:43:43 by muteza            #+#    #+#             */
-/*   Updated: 2021/11/09 16:52:05 by muteza           ###   ########.fr       */
+/*   Updated: 2021/11/09 17:14:11 by muteza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,14 @@ int	ft_printf(const char *num, ...)
 		else
 			count++;
 	}
-	count = ft_count((char *)num);
+	//ft_count((char *)num);
 	va_end(argument);
 	return (count - 1);
 }
-
+/*
 int	main(void)
 {
-	printf("%d\n", printf(" %c %d ", 'b', 0, '1'));
-	printf("%d\n", ft_printf(" %c %d ", 'b', 0, '1'));
+	printf("%d\n", printf(" %c ", 'b', 0, '1'));
+	printf("%d\n", ft_printf(" %c ", 'b', 0, '1'));
 }
+*/
