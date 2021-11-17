@@ -6,7 +6,7 @@
 /*   By: muteza <muteza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 18:18:33 by muteza            #+#    #+#             */
-/*   Updated: 2021/11/09 17:17:24 by muteza           ###   ########.fr       */
+/*   Updated: 2021/11/17 11:26:12 by muteza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,26 @@
 
 int	ft_checkflags(char **tab_arg, va_list args, int count)
 {
-	long	n;
-
-	n = 0;
 	if (*(tab_arg[0] + count) == 'c')
-		ft_argputchar(args);
+		return (ft_argputchar(va_arg(args, int)));
 	if (*(tab_arg[0] + count) == 's')
-		ft_argputstr(args);
-	//if (*(tab_arg[0] + count) == 'p')
-//		ft_argputhexa(args);
+		return (ft_argputstr(va_arg(args, char *)));
+	if (*(tab_arg[0] + count) == 'p')
+	{
+		ft_argputstr("0x");
+		return (ft_argputnbr_base(va_arg(args, unsigned long), 0) + 2);
+	}
 	if ((*(tab_arg[0] + count) == 'd') || (*(tab_arg[0] + count) == 'i'))
-	{
-		n = va_arg(args, long);
-		ft_argputnbr(n, args);
-	}
+		return (ft_argputnbr(va_arg(args, int)));
 	if (*(tab_arg[0] + count) == 'u')
-	{
-		n = va_arg(args, unsigned int);
-		ft_argputnbr(n, args);
-	}
+		return (ft_argputnbr_base(va_arg(args, unsigned int), 2));
 	if (*(tab_arg[0] + count) == 'x')
-	{
-		n = va_arg(args, unsigned int);
-		ft_argputnbr_base(n, args);
-	}
+		return (ft_argputnbr_base(va_arg(args, unsigned int), 0));
+	if (*(tab_arg[0] + count) == 'X')
+		return (ft_argputnbr_base(va_arg(args, unsigned int), 1));
+	if (*(tab_arg[0] + count) == '%')
+		return (ft_argputchar('%'));
 	return (0);
-}
-
-int	ft_check_space(char *str, int k)
-{
-	int	i;
-
-	i = ft_strlen(str);
-	while (str[k] == ' ')
-	{
-		ft_putchar(' ');
-		k++;
-	}
-	return (k);
 }
 
 int	ft_check_idflags(int count, char *str)
@@ -59,7 +41,7 @@ int	ft_check_idflags(int count, char *str)
 	int		i;
 	char	*flags;
 
-	flags = "scdiux";
+	flags = "scdiuxXp%";
 	i = 0;
 	count++;
 	while (flags[i] != str[count] && flags[i])

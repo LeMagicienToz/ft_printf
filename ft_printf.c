@@ -6,7 +6,7 @@
 /*   By: muteza <muteza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 17:43:43 by muteza            #+#    #+#             */
-/*   Updated: 2021/11/09 17:14:11 by muteza           ###   ########.fr       */
+/*   Updated: 2021/11/13 16:23:35 by muteza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 int	ft_printf(const char *num, ...)
 {
 	int		count;
+	int		compteur;
 	va_list	argument;
 
+	compteur = 0;
 	count = 0;
 	va_start(argument, num);
 	while (num[count] != '\0')
@@ -24,25 +26,25 @@ int	ft_printf(const char *num, ...)
 		if (num[count] == '%' && ft_check_idflags(count, (char *)num) == 1)
 		{
 			count++;
-			ft_checkflags((char **)&num, argument, count);
+			compteur += ft_checkflags((char **)&num, argument, count);
 			count++;
 		}
 		else if (num[count] != '%')
 		{
 			ft_putchar(num[count]);
+			compteur++;
 			count++;
 		}
-		else
-			count++;
 	}
-	//ft_count((char *)num);
 	va_end(argument);
-	return (count - 1);
+	return (compteur);
 }
 /*
 int	main(void)
 {
-	printf("%d\n", printf(" %c ", 'b', 0, '1'));
-	printf("%d\n", ft_printf(" %c ", 'b', 0, '1'));
+	char	c;
+
+	printf("%d\n", printf(" %k  ", &c));
+	printf("%d\n", ft_printf(" %k  ", &c));
 }
 */

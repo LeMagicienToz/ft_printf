@@ -6,26 +6,43 @@
 /*   By: muteza <muteza@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 17:59:53 by muteza            #+#    #+#             */
-/*   Updated: 2021/11/08 09:27:25 by muteza           ###   ########.fr       */
+/*   Updated: 2021/11/11 17:32:35 by muteza           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_argputnbr_base(unsigned int n, va_list args)
+int	ft_argputnbr_base(unsigned long n, int d)
 {
-	char	*base;
-	char	c;
+	char			*base;
+	char			c;
+	int				j;
+	unsigned int	k;
 
-	base = "0123456789abcdef";
-	if (n > 16)
+	j = 0;
+	if (d == 0)
+		base = "0123456789abcdef";
+	if (d == 1)
+		base = "0123456789ABCDEF";
+	if (d == 2)
+		base = "0123456789";
+	k = ft_strlen(base);
+	if (n >= k)
 	{
-		ft_argputnbr((n / 16), args);
-		ft_argputnbr((n % 16), args);
+		j += ft_argputnbr_base((n / k), d);
+		j += ft_argputnbr_base((n % k), d);
 	}
-	if (n < 17)
+	if (n < k)
 	{
 		c = base[n];
-		ft_putchar(c);
+		j += ft_argputchar(c);
 	}
+	return (j);
 }
+/*
+int main()
+{
+	printf("%d\n ", printf("%x", 16));
+	printf("%d\n ", ft_argputnbr_base(16, 16));
+}
+*/
