@@ -4,11 +4,9 @@ SRCS 	=	ft_printf.c\
 			ft_argputstr.c\
 			ft_putchar.c\
 			ft_strlen.c\
-			ft_strdup.c\
 			ft_putstr.c\
 			ft_argputnbr.c\
 			ft_argputnbr_base.c\
-			ft_count.c\
 
 OBJS	= ${SRCS:.c=.o}
 
